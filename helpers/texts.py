@@ -28,7 +28,7 @@ class MainPageText():
     solutionText = "How is ChatGPT able to solve this problem?"
     videoObjectiveText = "What is this video's objective?"
 
-    reviewButtonText = "Review Answers"
+    reviewButtonText = "Set Input"
 
     stepTwoTitle = "Step 2. Generate each section of your script and review it"
     stepTwoText = """

@@ -2,11 +2,29 @@
 body {
     color: #fff;
     background-color: #4F8BF9;
-}
-*/
+} */
+
 
 .stButton>button {
     height: auto;
+    background-color: #4F8BF9;
+    color: #fff;
+}
+
+.stButton>button:hover {
+    background-color: #0655e7;
+    color: #fff;
+    border: #4F8BF9
+}
+
+.stButton>button:active {
+    background-color: #0655e7;
+    color: #fff;
+    border: #4F8BF9
+}
+
+.e1f1d6gn0 {
+    height: auto
 }
 
 /*

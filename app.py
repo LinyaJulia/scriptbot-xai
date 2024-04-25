@@ -1,15 +1,17 @@
 import streamlit as st
-from helpers import texts, managers
+from helpers import modelManager, buttonManager, texts, style
 
 def main():
+    
+    style.local_css("helpers/style.css")
 
     if 'modelManager' not in st.session_state:
         st.session_state.modelManager = None
     if 'buttonManager' not in st.session_state:
         st.session_state.buttonManager = None
 
-    st.session_state.modelManager = managers.ModelManager()
-    st.session_state.buttonManager = managers.ButtonManager()
+    st.session_state.modelManager = modelManager.ModelManager()
+    st.session_state.buttonManager = buttonManager.ButtonManager()
 
     text = texts.MainPageText()
     st.markdown(text.title)
@@ -24,15 +26,16 @@ def main():
         audienceInput = st.text_input(text.audienceInputText)
         problemInput = st.text_input(text.problemStatementText)
         solutionInput = st.text_area(text.solutionText)
+        objectiveInput = st.text_area(text.videoObjectiveText)
 
         reviewAnswerButton = st.button(text.reviewButtonText)
         if(reviewAnswerButton):
-            st.session_state.modelManager.setInputs(audienceInput, problemInput, solutionInput)
+            st.session_state.modelManager.setInputs(audienceInput, problemInput, solutionInput, objectiveInput)
             st.session_state.modelManager.setReview()
             st.session_state.buttonManager.reviewButtonStates()
         review, reviewText = st.session_state.modelManager.getReview()
-        st.markdown(review)
-        st.markdown(reviewText)
+        # st.markdown(review)
+        # st.markdown(reviewText)x
 
     with st.expander(text.stepTwoTitle):
         st.markdown(text.stepTwoText)
@@ -136,7 +139,7 @@ def main():
         st.markdown(text.stepThreeText)
         generateScript = st.button("Generate Final Script")
         if(generateScript):
-            st.text_area("Final Script", value="Sample")
+            st.text_area("Final Script", value=st.session_state.modelManager.getFinalScript())
             st.button("Export")
 
 
