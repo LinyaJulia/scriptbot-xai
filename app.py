@@ -35,7 +35,7 @@ def main():
                 st.session_state.modelManager.setReview()
                 st.session_state.buttonManager.reviewButtonStates()
             review, reviewText = st.session_state.modelManager.getReview()                      
-        # st.markdown(review)
+        st.markdown(review)
         st.markdown(reviewText)
 
     with st.expander(text.stepTwoTitle):

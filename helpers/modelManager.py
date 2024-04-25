@@ -3,7 +3,6 @@ from helpers import chatGptClient
 from prompts import getHookPrompt, getTitleAndIntroPrompt, getLearningObjectives, getPrompts, getTutorialSectionPrompt
 
 class ModelManager():
-
     st.session_state.audience = ""
     st.session_state.problem = ""
     st.session_state.solution = ""
@@ -15,10 +14,31 @@ class ModelManager():
     st.session_state.learningObjectives = ""
     st.session_state.prompts = ""
     st.session_state.tutorialSection = ""
-    st.session_state.chatGptClient = ""
 
     def __init__(self):
         st.session_state.chatGptClient = chatGptClient.ChatGPTClient()
+        if 'audience' not in st.session_state:
+            st.session_state.audience = ""
+        if 'problem' not in st.session_state:
+            st.session_state.problem = ""
+        if 'solution' not in st.session_state:
+            st.session_state.solution = ""
+        if 'objective' not in st.session_state:
+            st.session_state.objective = ""
+        if 'review' not in st.session_state:
+            st.session_state.review = ""
+        if 'reviewText' not in st.session_state:
+            st.session_state.reviewText = ""
+        if 'hook' not in st.session_state:
+            st.session_state.hook = ""
+        if 'titleAndIntroduction' not in st.session_state:
+            st.session_state.titleAndIntroduction = ""
+        if 'learningObjectives' not in st.session_state:
+            st.session_state.learningObjectives = ""
+        if 'prompts' not in st.session_state:
+            st.session_state.prompts = ""
+        if 'tutorialSection' not in st.session_state:
+            st.session_state.tutorialSection = ""
 
     def setInputs(self, audience, problem, solution, objective):
         st.session_state.audience = audience
@@ -29,7 +49,7 @@ class ModelManager():
     def setReview(self):
         if(st.session_state.audience and st.session_state.problem and st.session_state.solution and st.session_state.objective):
             st.session_state.review = "Pass"
-            st.session_state.reviewText = ""
+            st.session_state.reviewText = "You may now proceed to the next step."
         else: 
             st.session_state.review = "Fail"
             st.session_state.reviewText = "_Please make sure to fill in all missing fields._"

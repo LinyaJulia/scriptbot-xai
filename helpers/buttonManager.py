@@ -11,6 +11,17 @@ class ButtonManager():
         "generateScript" : False
     }
 
+    def __init__(self):
+        if "buttonStates" not in st.session_state:
+            st.session_state.buttonStates = {
+                "hook" : False,
+                "titleAndIntroduction" : False,
+                "learningObjectives" : False,
+                "prompts" : False, 
+                "tutorialSection" : False,
+                "generateScript" : False
+            }
+
     def getButtonDisabledState(self, buttonName):
         return not st.session_state.buttonStates[buttonName]
     
