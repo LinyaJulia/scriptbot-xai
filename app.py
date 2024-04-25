@@ -28,13 +28,12 @@ def main():
         solutionInput = st.text_area(text.solutionText)
         objectiveInput = st.text_area(text.videoObjectiveText)
 
-        with st.spinner(text.loadingText):
-            reviewAnswerButton = st.button(text.reviewButtonText)
-            if(reviewAnswerButton):
-                st.session_state.modelManager.setInputs(audienceInput, problemInput, solutionInput, objectiveInput)
-                st.session_state.modelManager.setReview()
-                st.session_state.buttonManager.reviewButtonStates()
-            review, reviewText = st.session_state.modelManager.getReview()                      
+        reviewAnswerButton = st.button(text.reviewButtonText)
+        if(reviewAnswerButton):
+            st.session_state.modelManager.setInputs(audienceInput, problemInput, solutionInput, objectiveInput)
+            st.session_state.modelManager.setReview()
+            st.session_state.buttonManager.reviewButtonStates()
+        review, reviewText = st.session_state.modelManager.getReview()                      
         st.markdown(review)
         st.markdown(reviewText)
 
