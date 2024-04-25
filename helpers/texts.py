@@ -8,9 +8,7 @@ class MainPageText():
     
     stepOneText = """
     In order for us to create the script for you, first you need to answer some very important questions. 
-    Make sure to answer these questions in a clear and detailed manner. After answering the questions, press the **Review Answers** button.
-    Check the feedback given in the review and apply them accordingly. 
-    Once you are satisfied, press the **Let's Start** button.
+    Make sure to answer these questions in a clear and detailed manner. After answering the questions, press the **Set Input** button.
     """
 
     stepOneSampleText = "**Click here to see some examples**"
@@ -32,11 +30,13 @@ class MainPageText():
 
     stepTwoTitle = "Step 2. Generate each section of your script and review it"
     stepTwoText = """
-    In this section, review the result in each substep in order. If you are not happy with the results, press the **Regenerate Current Step** button 
-    until you are happy. Then, you can press the **Generate Next Step** button. This button will generate the next section.                
+    In this section, click the Generate/Regenerate button and review the result in each substep in order. If you are not happy with the results, press the **Generate/Regenerate** button 
+    until you are happy. Do this until all sections are created.           
     """
 
     stepThreeTitle = "Step 3. Generate your final script and export it"
     stepThreeText = """
     Click on the **Generate Script** button to generate your final script. You may edit the content of the script through the text box and then copy it to your desired location.          
     """
+
+    loadingText = "Loading..."

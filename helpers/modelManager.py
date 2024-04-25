@@ -27,8 +27,12 @@ class ModelManager():
         st.session_state.objective = objective
 
     def setReview(self):
-        st.session_state.review = "Pass"
-        st.session_state.reviewText = "Review text"
+        if(st.session_state.audience and st.session_state.problem and st.session_state.solution and st.session_state.objective):
+            st.session_state.review = "Pass"
+            st.session_state.reviewText = ""
+        else: 
+            st.session_state.review = "Fail"
+            st.session_state.reviewText = "_Please make sure to fill in all missing fields._"
     
     def getReview(self):
         return st.session_state.review, st.session_state.reviewText

@@ -2,7 +2,7 @@ import streamlit as st
 from helpers import modelManager, buttonManager, texts, style
 
 def main():
-    
+
     style.local_css("helpers/style.css")
 
     if 'modelManager' not in st.session_state:
@@ -28,14 +28,15 @@ def main():
         solutionInput = st.text_area(text.solutionText)
         objectiveInput = st.text_area(text.videoObjectiveText)
 
-        reviewAnswerButton = st.button(text.reviewButtonText)
-        if(reviewAnswerButton):
-            st.session_state.modelManager.setInputs(audienceInput, problemInput, solutionInput, objectiveInput)
-            st.session_state.modelManager.setReview()
-            st.session_state.buttonManager.reviewButtonStates()
-        review, reviewText = st.session_state.modelManager.getReview()
+        with st.spinner(text.loadingText):
+            reviewAnswerButton = st.button(text.reviewButtonText)
+            if(reviewAnswerButton):
+                st.session_state.modelManager.setInputs(audienceInput, problemInput, solutionInput, objectiveInput)
+                st.session_state.modelManager.setReview()
+                st.session_state.buttonManager.reviewButtonStates()
+            review, reviewText = st.session_state.modelManager.getReview()                      
         # st.markdown(review)
-        # st.markdown(reviewText)x
+        st.markdown(reviewText)
 
     with st.expander(text.stepTwoTitle):
         st.markdown(text.stepTwoText)
@@ -53,10 +54,10 @@ def main():
                     key="reg1", 
                     disabled=st.session_state.buttonManager.getButtonDisabledState("hook")
                     )
-                
+            with st.spinner(text.loadingText):
                 if (regenerateButtonHook):
                     st.session_state.modelManager.setHook()
-                    st.session_state.buttonManager.reviewButtonStates()
+                    st.session_state.buttonManager.reviewButtonStates() 
             st.write(st.session_state.modelManager.getHook())
 
 
@@ -73,6 +74,7 @@ def main():
                     disabled=st.session_state.buttonManager.getButtonDisabledState("titleAndIntroduction")
                     )
                 
+            with st.spinner(text.loadingText):
                 if (regenerateButtonTitle):
                     st.session_state.modelManager.setTitleAndIntroduction()
                     st.session_state.buttonManager.reviewButtonStates()
@@ -91,7 +93,7 @@ def main():
                     key="reg3",
                     disabled=st.session_state.buttonManager.getButtonDisabledState("learningObjectives")
                     )
-                
+            with st.spinner(text.loadingText):
                 if (regenerateButtonlearningObjectives):
                     st.session_state.modelManager.setLearningObjectives()
                     st.session_state.buttonManager.reviewButtonStates()
@@ -110,7 +112,7 @@ def main():
                     key="reg4",
                     disabled=st.session_state.buttonManager.getButtonDisabledState("prompts")
                     )
-                
+            with st.spinner(text.loadingText):
                 if (regenerateButtonPrompts):
                     st.session_state.modelManager.setPrompts()
                     st.session_state.buttonManager.reviewButtonStates()
@@ -129,7 +131,7 @@ def main():
                     key="reg5",
                     disabled=st.session_state.buttonManager.getButtonDisabledState("tutorialSection")
                     )
-                
+            with st.spinner(text.loadingText):
                 if (regenerateButtonTutorialSection):
                     st.session_state.modelManager.setTutorialSection()
                     st.session_state.buttonManager.reviewButtonStates()
@@ -139,8 +141,9 @@ def main():
         st.markdown(text.stepThreeText)
         generateScript = st.button("Generate Final Script")
         if(generateScript):
-            st.text_area("Final Script", value=st.session_state.modelManager.getFinalScript())
-            st.button("Export")
+            finalScript = st.session_state.modelManager.getFinalScript()
+            st.text_area("Final Script", value=finalScript)
+            st.download_button("Export", data=finalScript)
 
 
 if __name__ == '__main__':
