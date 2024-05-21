@@ -1,7 +1,7 @@
 import streamlit as st
 
 class ButtonManager(): 
-
+    
     st.session_state.buttonStates = {
         "hook" : False,
         "titleAndIntroduction" : False,

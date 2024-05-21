@@ -1,6 +1,6 @@
 import streamlit as st
 from helpers import chatGptClient
-from prompts import getHookPrompt, getTitleAndIntroPrompt, getLearningObjectives, getPrompts, getTutorialSectionPrompt
+from prompts import getHookPrompt, getTitleAndIntroPrompt, getLearningObjectives, getPrompts, getTutorialSectionPrompt, getCourseDescription
 
 class ModelManager():
     st.session_state.audience = ""
@@ -14,6 +14,7 @@ class ModelManager():
     st.session_state.learningObjectives = ""
     st.session_state.prompts = ""
     st.session_state.tutorialSection = ""
+    st.session_state.courseDescription = ""
 
     def __init__(self):
         st.session_state.chatGptClient = chatGptClient.ChatGPTClient()
@@ -39,6 +40,8 @@ class ModelManager():
             st.session_state.prompts = ""
         if 'tutorialSection' not in st.session_state:
             st.session_state.tutorialSection = ""
+        if 'tutorialSection' not in st.session_state:
+            st.session_state.courseDescription = ""
 
     def setInputs(self, audience, problem, solution, objective):
         st.session_state.audience = audience
@@ -120,3 +123,13 @@ class ModelManager():
     def getFinalScript(self):
         finalScript = st.session_state.hook + st.session_state.titleAndIntroduction + st.session_state.learningObjectives + st.session_state.tutorialSection
         return finalScript
+    
+    def setCourseDescription(self):
+        courseDescription = getCourseDescription.getCourseDescription(
+            st.session_state.hook,
+            st.session_state.titleAndIntroduction
+        )
+        st.session_state.courseDescription = st.session_state.chatGptClient.chat(courseDescription)
+    
+    def getCourseDescription(self):
+        return st.session_state.courseDescription

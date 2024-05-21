@@ -145,5 +145,14 @@ def main():
             st.download_button("Export", data=finalScript)
 
 
+    # Test for Course Description Creator
+    with st.expander("Step 4. Create a Course Description (testing)"):
+        st.markdown("Create a Course Descirption")
+        generateCourseDescription = st.button("Generate Course Description")
+        if(generateCourseDescription):
+            st.session_state.modelManager.setCourseDescription()
+            st.text_area("Course Description", value=st.session_state.modelManager.getCourseDescription())
+
+
 if __name__ == '__main__':
     main()
