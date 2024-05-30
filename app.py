@@ -57,7 +57,13 @@ def main():
                 if (regenerateButtonHook):
                     st.session_state.modelManager.setHook()
                     st.session_state.buttonManager.reviewButtonStates() 
-            st.write(st.session_state.modelManager.getHook())
+            
+            st.text_area(
+                label="Hook", 
+                key='hook_text_area', 
+                value=st.session_state.modelManager.getHook()
+                )
+            
 
 
         # Title and Introduction 
@@ -77,7 +83,10 @@ def main():
                 if (regenerateButtonTitle):
                     st.session_state.modelManager.setTitleAndIntroduction()
                     st.session_state.buttonManager.reviewButtonStates()
-            st.write(st.session_state.modelManager.getTitleAndIntroduction())
+            st.text_area(
+                label="Title and Introduction", 
+                key="title_and_intro_text_area",
+                value=st.session_state.modelManager.getTitleAndIntroduction())
 
 
         # Learning Objectives
@@ -96,7 +105,11 @@ def main():
                 if (regenerateButtonlearningObjectives):
                     st.session_state.modelManager.setLearningObjectives()
                     st.session_state.buttonManager.reviewButtonStates()
-            st.write(st.session_state.modelManager.getLearningObjectives())
+            st.text_area(
+                label="Learning Objectives",
+                key="learning_objectives_text_area",
+                value=st.session_state.modelManager.getLearningObjectives()
+                )
 
 
         # Prompts
@@ -115,7 +128,10 @@ def main():
                 if (regenerateButtonPrompts):
                     st.session_state.modelManager.setPrompts()
                     st.session_state.buttonManager.reviewButtonStates()
-            st.write(st.session_state.modelManager.getPrompts())
+            st.text_area(
+                label="Prompts", 
+                key="prompts_text_area",
+                value=st.session_state.modelManager.getPrompts())
 
 
         # Tutorial Section and Conclusion
@@ -134,7 +150,11 @@ def main():
                 if (regenerateButtonTutorialSection):
                     st.session_state.modelManager.setTutorialSection()
                     st.session_state.buttonManager.reviewButtonStates()
-            st.write(st.session_state.modelManager.getTutorialSection())
+            st.text_area(
+                label="Tutorial Section",
+                key="tutorial_section_text_area", 
+                value=st.session_state.modelManager.getTutorialSection()
+                )
     
     with st.expander(text.stepThreeTitle):
         st.markdown(text.stepThreeText)

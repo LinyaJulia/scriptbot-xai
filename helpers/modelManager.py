@@ -102,7 +102,7 @@ class ModelManager():
             st.session_state.problem,
             st.session_state.solution,
             st.session_state.objective,
-            st.session_state.learningObjectives
+            st.session_state.learning_objectives_text_area
         )
         st.session_state.prompts = st.session_state.chatGptClient.chat(message)
 
@@ -112,8 +112,8 @@ class ModelManager():
     def setTutorialSection(self):
         message = getTutorialSectionPrompt.getTutorialSectionPrompt(
             st.session_state.objective,
-            st.session_state.learningObjectives,
-            st.session_state.prompts
+            st.session_state.learning_objectives_text_area,
+            st.session_state.prompts_text_area
         )
         st.session_state.tutorialSection = st.session_state.chatGptClient.chat(message)
 
@@ -121,13 +121,13 @@ class ModelManager():
         return st.session_state.tutorialSection
     
     def getFinalScript(self):
-        finalScript = st.session_state.hook + st.session_state.titleAndIntroduction + st.session_state.learningObjectives + st.session_state.tutorialSection
+        finalScript = st.session_state.hook_text_area + st.session_state.title_and_intro_text_area + st.session_state.learning_objectives_text_area + st.session_state.tutorial_section_text_area
         return finalScript
     
     def setCourseDescription(self):
         courseDescription = getCourseDescription.getCourseDescription(
-            st.session_state.hook,
-            st.session_state.titleAndIntroduction
+            st.session_state.hook_text_area,
+            st.session_state.title_and_intro_text_area
         )
         st.session_state.courseDescription = st.session_state.chatGptClient.chat(courseDescription)
     
